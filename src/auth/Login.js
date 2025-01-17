@@ -31,6 +31,7 @@ const Login = () => {
             console.log('data:', data);
             const response = await api.login(data);
             console.log('Login successful:', response);
+            window.location.href = '/me';
         } catch (err) {
             setError(err.message);
         }
