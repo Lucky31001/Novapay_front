@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes, FaUser } from 'react-icons/fa';
 import apiInstance from '../config/api';
 
 const Sidebar = ({ visible, toggleSidebar }) => {
+    const token = apiInstance.token;
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         apiInstance.setToken('');
@@ -16,11 +18,21 @@ const Sidebar = ({ visible, toggleSidebar }) => {
                 <FaTimes size={24} />
             </button>
             <ul className="mt-16 space-y-5">
-                <li><Link to="/register" className="text-white font-bold hover:text-green-400">Register</Link></li>
-                <li><Link to="/login" className="text-white font-bold hover:text-green-400">Login</Link></li>
-                <li><Link to="/me" className="text-white font-bold hover:text-green-400">Profile</Link></li>
+                {!token && (
+                    <>
+                        <li><Link to="/register" className="text-white font-bold hover:text-green-400">Register</Link></li>
+                        <li><Link to="/login" className="text-white font-bold hover:text-green-400">Login</Link></li>
+                    </>
+                )}
             </ul>
-            <button className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={handleLogout}>Logout</button>
+            {token && (
+                <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+                    <Link to="/me" className="text-white hover:text-green-400">
+                        <FaUser size={24} />
+                    </Link>
+                    <button className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={handleLogout}>Logout</button>
+                </div>
+            )}
         </div>
     );
 };
