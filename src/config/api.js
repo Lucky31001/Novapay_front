@@ -87,6 +87,10 @@ class Api {
   depots() {
     return this.request('/depots', { method: 'GET' });
   }
+
+  cloture(id) {
+    return this.request(`/comptes-bancaires/cloture/${id}`, { method: 'PATCH' });
+  }
 }
 
 const apiInstance = new Api('http://localhost:8000', '/login');
