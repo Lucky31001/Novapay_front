@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import api from '../config/api';
+import { ThemeContext } from '../context/ThemeContext';
 
 const AccountFormModal = ({ toggleModal, onFormSubmit }) => {
   const [accountName, setAccountName] = useState('');
+  const { theme } = useContext(ThemeContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +18,9 @@ const AccountFormModal = ({ toggleModal, onFormSubmit }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
+    <div
+      className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10 ${theme}`}
+    >
       <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4">Créé un compte</h2>
         <form onSubmit={handleSubmit}>

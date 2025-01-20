@@ -89,7 +89,9 @@ class Api {
   }
 
   cloture(id) {
-    return this.request(`/comptes-bancaires/cloture/${id}`, { method: 'PATCH' });
+    return this.request(`/comptes-bancaires/cloture/${id}`, {
+      method: 'PATCH',
+    });
   }
 
   addDepot(data) {

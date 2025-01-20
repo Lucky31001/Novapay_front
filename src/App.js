@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 import Register from './auth/Register';
@@ -9,9 +9,11 @@ import NotFound from './NotFound';
 import Sidebar from './navigation/Sidebar';
 import MyAccounts from './accounts/MyAccounts';
 import MyDepots from './depots/MyDepots';
+import { ThemeContext } from './context/ThemeContext';
 
 function App() {
   const [sidebarVisible, setSidebarVisible] = useState(false);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
@@ -19,7 +21,7 @@ function App() {
 
   return (
     <Router>
-      <div className="flex">
+      <div className={`flex ${theme}`}>
         <button
           className="fixed top-6 left-6 text-black z-10"
           onClick={toggleSidebar}

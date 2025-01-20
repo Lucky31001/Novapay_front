@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import api from '../config/api';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const { theme } = useContext(ThemeContext);
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -40,7 +42,9 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div
+      className={`flex flex-col items-center justify-center min-h-screen ${theme}`}
+    >
       <h2 className="text-2xl font-bold mb-4">Créé mon compte</h2>
       <form
         onSubmit={handleSubmit}
@@ -67,7 +71,7 @@ const Register = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">mot de passe:</label>
+          <label className="block text-gray-700">Mot de passe:</label>
           <input
             type="password"
             value={password}
