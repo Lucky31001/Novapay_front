@@ -91,6 +91,11 @@ class Api {
   cloture(id) {
     return this.request(`/comptes-bancaires/cloture/${id}`, { method: 'PATCH' });
   }
+
+  addDepot(data) {
+    console.log('API request:', data);
+    return this.request('/depot', { method: 'POST', data });
+  }
 }
 
 const apiInstance = new Api('http://localhost:8000', '/login');

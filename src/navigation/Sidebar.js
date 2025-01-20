@@ -4,7 +4,8 @@ import { FaTimes, FaUser } from 'react-icons/fa';
 import apiInstance from '../config/api';
 
 const Sidebar = ({ visible, toggleSidebar }) => {
-  const token = apiInstance.token;
+  const apiToken = apiInstance.token;
+  const localToken = localStorage.getItem('token');
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -23,7 +24,7 @@ const Sidebar = ({ visible, toggleSidebar }) => {
         <FaTimes size={24} />
       </button>
       <ul className="mt-16 space-y-5">
-        {!token && (
+        {(!apiToken || !localToken) && (
           <>
             <li>
               <Link
@@ -44,7 +45,7 @@ const Sidebar = ({ visible, toggleSidebar }) => {
           </>
         )}
       </ul>
-      {token && (
+      {(apiToken || localToken) && (
         <>
           <ul className="mt-16 space-y-5">
             <li>
