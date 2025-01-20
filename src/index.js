@@ -8,15 +8,15 @@ import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 WebFont.load({
-    google: {
-        families: ['Roboto:400,700']
-    }
-})
+  google: {
+    families: ['Roboto:400,700'],
+  },
+});
 
 root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

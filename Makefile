@@ -10,8 +10,8 @@ build:
 test:
 	npm test
 
-lint:
-	npm run lint
+prettier:
+	npm run prettier
 
 clean:
 	rm -rf node_modules build
