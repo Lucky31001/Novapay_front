@@ -42,7 +42,11 @@ class Api {
             const response = await this.instance(endpoint, options);
             return response.data;
         } catch (error) {
-            throw new Error(`HTTP error! status: ${error.response.status}`);
+            if (error.response && error.response.status === 401) {
+                this.redirectToLogin();
+            } else {
+                throw new Error(`HTTP error! status: ${error.response.status}`);
+            }
         }
     }
 
@@ -51,6 +55,7 @@ class Api {
     }
 
     async login(data) {
+        console.log('API request:', data); // Log the request to debug
         const response = await this.request('/login', { method: 'POST', data });
         console.log('API response:', response); // Log the response to debug
         if (response.access_token) {

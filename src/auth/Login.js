@@ -28,7 +28,6 @@ const Login = () => {
         }
         try {
             const data = { email, password };
-            console.log('data:', data);
             const response = await api.login(data);
             console.log('Login successful:', response);
             window.location.href = '/me';
