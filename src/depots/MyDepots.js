@@ -21,7 +21,7 @@ const MyDepots = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-6 rounded shadow-md w-full max-w-2xl">
-        <h1 className="text-3xl font-bold mb-6 text-center">My Deposits</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">Mes dépots</h1>
         <ul className="space-y-4">
           {depots.map((depot, index) => (
             <li key={index} className="p-4 border rounded-lg bg-gray-50">
