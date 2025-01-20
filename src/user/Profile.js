@@ -19,7 +19,7 @@ const Profile = () => {
     }, []);
 
     if (error) {
-        return <p style={{ color: 'red' }}>{error}</p>;
+        return <p className="text-red-500">{error}</p>;
     }
 
     if (!user) {
@@ -27,10 +27,12 @@ const Profile = () => {
     }
 
     return (
-        <div>
-            <h2>Profile</h2>
-            <p><strong>Username:</strong> {user.username}</p>
-            <p><strong>Email:</strong> {user.email}</p>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+            <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
+                <h2 className="text-2xl font-bold mb-4">Profile</h2>
+                <p className="mb-2"><strong>Username:</strong> {user.username}</p>
+                <p className="mb-2"><strong>Email:</strong> {user.email}</p>
+            </div>
         </div>
     );
 };

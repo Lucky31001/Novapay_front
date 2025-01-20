@@ -1,39 +1,36 @@
-import React from 'react';
-import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { FaBars } from 'react-icons/fa';
 import Register from './auth/Register';
 import Login from './auth/Login';
 import PrivateRoute from "./navigation/PrivateRoutes";
 import Profile from "./user/Profile";
+import NotFound from "./NotFound";
+import Sidebar from './navigation/Sidebar';
 
 function App() {
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
+  };
+
   return (
       <Router>
-        <div className="App">
-          <header className="App-header">
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-          <nav>
-            <ul>
-              <li><Link to="/register">Register</Link></li>
-              <li><Link to="/login">Login</Link></li>
-              <li><Link to="/me">Profile</Link></li>
-            </ul>
-          </nav>
-          <Routes>
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/me" element={<PrivateRoute><Profile /></PrivateRoute>} />
-          </Routes>
+        <div className="flex">
+          <button className="fixed top-6 left-6 text-black" onClick={toggleSidebar}>
+            <FaBars size={24} />
+          </button>
+          <Sidebar visible={sidebarVisible} toggleSidebar={toggleSidebar} />
+          <div className="flex-1 p-4">
+            <Routes>
+              <Route path="/" element={<Register />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/me" element={<PrivateRoute><Profile /></PrivateRoute>} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
         </div>
       </Router>
   );
